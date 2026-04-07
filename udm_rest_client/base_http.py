@@ -282,6 +282,7 @@ class Session:
             self._client.set_default_header("Accept-Language", self.language)
         self._client.set_default_header("User-Agent", f"udm-rest-client/{udm_rest_client.__version__}")
         self._session = self._client.rest_client.pool_manager
+        self._session._max_headers = 1000
 
     async def close(self) -> None:
         if self._session:
