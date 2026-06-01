@@ -740,7 +740,7 @@ async def test_modify_error_exception(user_created_via_http, udm_kwargs, error):
             await obj.save()
         exc = exc_info.value
         assert msg.search(str(exc))
-        assert exc.reason == "Unprocessable Entity"
+        assert exc.reason in ("Unprocessable Entity", "Unprocessable Content")
         assert isinstance(exc.dn, str)
         assert isinstance(exc.error, dict)
         assert isinstance(exc.status, int)
