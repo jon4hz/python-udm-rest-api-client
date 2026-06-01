@@ -781,7 +781,7 @@ async def test_create_error_exception(udm_kwargs, error, faker):
             await obj.save()
         exc = exc_info.value
         assert msg.search(str(exc))
-        assert exc.reason == "Unprocessable Entity"
+        assert exc.reason in ("Unprocessable Entity", "Unprocessable Content")
         assert exc.dn is None
         assert isinstance(exc.error, dict)
         assert isinstance(exc.status, int)
